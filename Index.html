@@ -482,11 +482,11 @@
         <div class="badge">Operaciones unificadas en bases de prueba</div>
         <h1 style="margin:0 0 10px;">Operaciones Call Center</h1>
         <p class="muted" style="margin:0 0 18px;">
-          Login con Microsoft
+          Login con Microsoft, panel individual para agentes y panel admin completo en una sola página.
         </p>
 
         <div class="warning" style="text-align:left; margin-bottom:18px;">
-          Esta versión usa colecciones de prueba para no romper mi sistema actual:
+          Esta versión usa colecciones de prueba para no romper tu sistema actual:
           <div style="margin-top:8px; display:grid; gap:6px;">
             <div><strong>prueba_operaciones_usuarios</strong></div>
             <div><strong>prueba_operaciones_registros</strong></div>
@@ -512,7 +512,7 @@
         </div>
       </div>
 
-      <div class="grid grid-4" style="margin-bottom:16px;">
+      <div id="topSummary" class="grid grid-4 top-admin-summary" style="margin-bottom:16px;">
         <div class="card">
           <div class="mini">Registros de hoy</div>
           <div class="big" id="kpiTotal">0</div>
@@ -531,7 +531,7 @@
         </div>
       </div>
 
-      <div class="grid grid-2" style="margin-bottom:16px;">
+      <div id="topQuickSection" class="grid grid-2 top-admin-summary" style="margin-bottom:16px;">
         <div class="card">
           <h2 class="title">Resumen general de hoy</h2>
           <div class="field">
@@ -571,93 +571,74 @@
         </div>
       </section>
 
-      <section id="agentView" class="hidden" style="margin-top:16px;">
-        <div class="agent-shell">
-          <div class="grid" style="gap:16px;">
-            <div class="card">
-              <h2 class="title">Mi panel</h2>
-              <div class="field"><label>Nombre</label><div id="agNombre">-</div></div>
-              <div class="field"><label>Correo</label><div id="agCorreo">-</div></div>
-              <div class="field"><label>Extensión</label><div id="agExt">-</div></div>
-              <div class="field"><label>Horario asignado</label><div id="agHorario">-</div></div>
-              <div class="field"><label>Estado actual</label><div id="agEstadoBadge" class="status disponible">Disponible</div></div>
-              <div class="stats-grid">
-                <div class="stat-box">
-                  <div class="mini">Log in</div>
-                  <div id="agLogin" style="font-size:20px;font-weight:900;">-</div>
+      <section id="agentView" class="hidden agent-view-compact" style="margin-top:16px;">
+        <div class="card agent-main-card">
+          <div class="agent-main-grid">
+            <div class="agent-panel-block">
+              <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;">
+                <div>
+                  <h2 class="title" style="margin-bottom:6px;">Mi panel</h2>
+                  <div class="muted">Tu vista personal de operaciones del día</div>
                 </div>
-                <div class="stat-box">
-                  <div class="mini">Log out</div>
-                  <div id="agLogout" style="font-size:20px;font-weight:900;">-</div>
-                </div>
-                <div class="stat-box">
-                  <div class="mini">Puntualidad</div>
-                  <div id="agPuntualidad" style="font-size:16px;font-weight:900;">-</div>
-                </div>
-                <div class="stat-box">
-                  <div class="mini">Fecha</div>
-                  <div id="agFecha" style="font-size:16px;font-weight:900;">-</div>
-                </div>
+                <div id="agEstadoBadge" class="status disponible">Disponible</div>
+              </div>
+
+              <div class="agent-info-list">
+                <div class="agent-info-item"><div class="label">Nombre</div><div id="agNombre" class="value">-</div></div>
+                <div class="agent-info-item"><div class="label">Correo</div><div id="agCorreo" class="value" style="font-size:14px;word-break:break-word;">-</div></div>
+                <div class="agent-info-item"><div class="label">Extensión</div><div id="agExt" class="value">-</div></div>
+                <div class="agent-info-item"><div class="label">Horario asignado</div><div id="agHorario" class="value">-</div></div>
+              </div>
+
+              <div class="agent-personal-grid" style="margin-top:12px;">
+                <div class="stat-box"><div class="mini">Puntualidad</div><div id="agPuntualidad" style="font-size:16px;font-weight:900;">-</div></div>
+                <div class="stat-box"><div class="mini">Fecha</div><div id="agFecha" style="font-size:16px;font-weight:900;">-</div></div>
+                <div class="stat-box"><div class="mini">Baño</div><div id="agTiempoBano" style="font-size:20px;font-weight:900;">00:00:00</div></div>
+                <div class="stat-box"><div class="mini">Almuerzo</div><div id="agTiempoAlmuerzo" style="font-size:20px;font-weight:900;">00:00:00</div></div>
+                <div class="stat-box"><div class="mini">Entrantes</div><div id="agEntrantes" style="font-size:20px;font-weight:900;">0</div></div>
+                <div class="stat-box"><div class="mini">Salientes</div><div id="agSalientes" style="font-size:20px;font-weight:900;">0</div></div>
+                <div class="stat-box"><div class="mini">Log in</div><div id="agLogin" style="font-size:20px;font-weight:900;">-</div></div>
+                <div class="stat-box"><div class="mini">Log out</div><div id="agLogout" style="font-size:20px;font-weight:900;">-</div></div>
               </div>
             </div>
 
-            <div class="card">
-              <h2 class="title">Mis tiempos y llamadas</h2>
-              <div class="stats-grid">
-                <div class="stat-box">
-                  <div class="mini">Baño</div>
-                  <div id="agTiempoBano" style="font-size:20px;font-weight:900;">00:00:00</div>
+            <div class="agent-side-stack">
+              <div class="agent-panel-block">
+                <h2 class="title">Cambiar estado</h2>
+                <div class="agent-actions-grid">
+                  <button id="btnDisponible" class="btn-green">Disponible</button>
+                  <button id="btnBano" class="btn-red">Baño</button>
+                  <button id="btnAlmuerzo" class="btn-primary">Almuerzo</button>
                 </div>
-                <div class="stat-box">
-                  <div class="mini">Almuerzo</div>
-                  <div id="agTiempoAlmuerzo" style="font-size:20px;font-weight:900;">00:00:00</div>
-                </div>
-                <div class="stat-box">
-                  <div class="mini">Entrantes</div>
-                  <div id="agEntrantes" style="font-size:20px;font-weight:900;">0</div>
-                </div>
-                <div class="stat-box">
-                  <div class="mini">Salientes</div>
-                  <div id="agSalientes" style="font-size:20px;font-weight:900;">0</div>
+                <div class="warning" style="margin-top:12px;">
+                  Máximo <strong>2 agentes</strong> en baño al mismo tiempo.
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class="grid" style="gap:16px;">
-            <div class="card">
-              <h2 class="title">Mis acciones</h2>
-              <div class="actions">
-                <button id="btnDisponible" class="btn-green">Disponible</button>
-                <button id="btnBano" class="btn-red">Baño</button>
-                <button id="btnAlmuerzo" class="btn-primary">Almuerzo</button>
+              <div class="agent-panel-block">
+                <h2 class="title">Registrar llamadas</h2>
+                <div class="field">
+                  <label>Tipo de llamada</label>
+                  <select id="agentCallType">
+                    <option value="Entrante">Entrante</option>
+                    <option value="Saliente">Saliente</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Cantidad</label>
+                  <input id="agentCallQty" type="number" min="1" value="1" />
+                </div>
+                <div class="agent-call-actions">
+                  <button id="btnRegistrarLlamada" class="btn-blue">Registrar</button>
+                  <button id="btnQuickEntrante" class="btn-secondary">+1 Entrante</button>
+                  <button id="btnQuickSaliente" class="btn-secondary">+1 Saliente</button>
+                </div>
               </div>
-              <div class="actions" style="margin-top:10px;">
-                <button id="btnMarkLogin" class="btn-secondary">Marcar log in</button>
-                <button id="btnMarkLogout" class="btn-secondary">Marcar log out</button>
-              </div>
-              <div class="warning" style="margin-top:12px;">
-                Máximo <strong>2 agentes</strong> en baño al mismo tiempo. Si ya hay 2, el sistema bloqueará el cambio.
-              </div>
-            </div>
 
-            <div class="card">
-              <h2 class="title">Registrar llamadas</h2>
-              <div class="field">
-                <label>Tipo de llamada</label>
-                <select id="agentCallType">
-                  <option value="Entrante">Entrante</option>
-                  <option value="Saliente">Saliente</option>
-                </select>
-              </div>
-              <div class="field">
-                <label>Cantidad</label>
-                <input id="agentCallQty" type="number" min="1" value="1" />
-              </div>
-              <div class="actions">
-                <button id="btnRegistrarLlamada" class="btn-blue">Registrar</button>
-                <button id="btnQuickEntrante" class="btn-secondary">+1 Entrante</button>
-                <button id="btnQuickSaliente" class="btn-secondary">+1 Saliente</button>
+              <div class="agent-panel-block">
+                <h2 class="title">Resumen general</h2>
+                <div class="field"><label>Agentes en baño</label><div id="listaBanoAgent" class="muted">Nadie</div></div>
+                <div class="field"><label>Agentes en almuerzo</label><div id="listaAlmuerzoAgent" class="muted">Nadie</div></div>
               </div>
             </div>
           </div>
@@ -665,75 +646,80 @@
       </section>
 
       <section id="adminView" class="hidden" style="margin-top:16px;">
-        <div class="controls">
-          <input id="searchInput" class="search" placeholder="Buscar por nombre, correo o extensión..." />
-
-          <select id="filterStatus">
-            <option value="all">Todos</option>
-            <option value="puntual">Puntuales</option>
-            <option value="leve">Leves (≤5 min)</option>
-            <option value="retraso">Retraso (&gt;5 min)</option>
-            <option value="sinmarcar">Sin marcar</option>
-            <option value="baño">En baño</option>
-            <option value="almuerzo">En almuerzo</option>
-            <option value="disponible">Disponibles</option>
-          </select>
-
-          <select id="filterAgent">
-            <option value="all">Todos los agentes</option>
-          </select>
-
-          <input id="filterFrom" type="date" />
-          <input id="filterTo" type="date" />
-          <button id="btnOpenRecordModal" class="btn-secondary">Registrar / editar</button>
-        </div>
-
-        <div class="grid grid-2" style="margin-bottom:16px;">
-          <div class="card">
-            <h2 class="title">Gestión de accesos</h2>
-            <div class="form-grid">
-              <div class="field">
-                <label>Agente / extensión</label>
-                <select id="accessRosterSelect"></select>
+        <div class="admin-shell">
+          <aside class="admin-sidebar">
+            <div class="card">
+              <h2 class="title">Resumen admin</h2>
+              <div id="adminResultSummary" class="warning">Sin resultados cargados.</div>
+              <div class="admin-overview-grid" style="margin-top:12px;">
+                <div class="overview-box"><div class="label">Registros</div><div id="adminKpiTotal" class="value">0</div></div>
+                <div class="overview-box"><div class="label">Entrantes</div><div id="adminKpiEntrantes" class="value">0</div></div>
+                <div class="overview-box"><div class="label">Salientes</div><div id="adminKpiSalientes" class="value">0</div></div>
+                <div class="overview-box"><div class="label">Con obs.</div><div id="adminKpiObs" class="value">0</div></div>
               </div>
-              <div class="field">
-                <label>Correo institucional</label>
-                <input id="accessEmail" type="email" placeholder="nombre@upana.edu.gt" />
-              </div>
-              <div class="field">
-                <label>Rol</label>
-                <select id="accessRole">
-                  <option value="agent">Agente</option>
-                  <option value="admin">Admin</option>
-                </select>
-              </div>
-              <div class="field">
-                <label>Estado</label>
-                <select id="accessActive">
-                  <option value="true">Activo</option>
-                  <option value="false">Inactivo</option>
-                </select>
+              <div class="danger" style="margin-top:12px;">
+                Vista conectada a <strong>bases de prueba</strong>.
               </div>
             </div>
-            <div class="actions">
-              <button id="btnSaveAccess" class="btn-blue">Guardar acceso</button>
-              <button id="btnClearAccess" class="btn-secondary">Limpiar</button>
+
+            <div class="card">
+              <h2 class="title">Gestión de accesos</h2>
+              <div class="form-grid">
+                <div class="field">
+                  <label>Agente / extensión</label>
+                  <select id="accessRosterSelect"></select>
+                </div>
+                <div class="field">
+                  <label>Correo institucional</label>
+                  <input id="accessEmail" type="email" placeholder="nombre@upana.edu.gt" />
+                </div>
+                <div class="field">
+                  <label>Rol</label>
+                  <select id="accessRole">
+                    <option value="agent">Agente</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Estado</label>
+                  <select id="accessActive">
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                  </select>
+                </div>
+              </div>
+              <div class="actions">
+                <button id="btnSaveAccess" class="btn-blue">Guardar acceso</button>
+                <button id="btnClearAccess" class="btn-secondary">Limpiar</button>
+              </div>
+              <div class="access-list" id="accessList"></div>
             </div>
-            <div class="access-list" id="accessList"></div>
+          </aside>
+
+          <div class="admin-main">
+            <div class="admin-toolbar">
+              <input id="searchInput" class="search" placeholder="Buscar por nombre, correo o extensión..." />
+              <select id="filterStatus">
+                <option value="all">Todos</option>
+                <option value="puntual">Puntuales</option>
+                <option value="leve">Leves (≤5 min)</option>
+                <option value="retraso">Retraso (&gt;5 min)</option>
+                <option value="sinmarcar">Sin marcar</option>
+                <option value="baño">En baño</option>
+                <option value="almuerzo">En almuerzo</option>
+                <option value="disponible">Disponibles</option>
+              </select>
+              <select id="filterAgent">
+                <option value="all">Todos los agentes</option>
+              </select>
+              <input id="filterFrom" type="date" />
+              <input id="filterTo" type="date" />
+              <button id="btnOpenRecordModal" class="btn-secondary">Registrar / editar</button>
+            </div>
+
+            <div id="adminCards" class="admin-grid"></div>
           </div>
-
-          <div class="card">
-            <h2 class="title">Resumen admin</h2>
-            <div class="warning" id="adminResultSummary">
-              Sin resultados cargados.
-            </div>
-            <div class="danger" style="margin-top:12px;">
-              Esta vista trabaja en <strong>bases de prueba</strong>. Cuando confirmes que todo está bien, se puede cambiar a las colecciones reales.
-            </div>
-          </div>
         </div>
-
-        <div id="adminCards" class="admin-grid"></div>
       </section>
     </section>
   </div>
@@ -1398,8 +1384,14 @@
       $("kpiBano").textContent = enBano.length;
       $("kpiAlmuerzo").textContent = enAlmuerzo.length;
       $("kpiDisponibles").textContent = disponibles.length;
-      $("listaBano").textContent = enBano.length ? enBano.map(r => r.nombre).join(", ") : "Nadie";
-      $("listaAlmuerzo").textContent = enAlmuerzo.length ? enAlmuerzo.map(r => r.nombre).join(", ") : "Nadie";
+      const banoText = enBano.length ? enBano.map(r => r.nombre).join(", ") : "Nadie";
+      const almuerzoText = enAlmuerzo.length ? enAlmuerzo.map(r => r.nombre).join(", ") : "Nadie";
+      $("listaBano").textContent = banoText;
+      $("listaAlmuerzo").textContent = almuerzoText;
+      const elBanoAgent = $("listaBanoAgent");
+      const elAlmuerzoAgent = $("listaAlmuerzoAgent");
+      if (elBanoAgent) elBanoAgent.textContent = banoText;
+      if (elAlmuerzoAgent) elAlmuerzoAgent.textContent = almuerzoText;
       $("infoTodayDate").textContent = `Fecha operativa: ${today}`;
     }
 
@@ -1482,10 +1474,14 @@
       const totalEntrantes = filtered.reduce((acc, r) => acc + Number(r.entrantes || 0), 0);
       const totalSalientes = filtered.reduce((acc, r) => acc + Number(r.salientes || 0), 0);
       $("adminResultSummary").innerHTML = `
-        Resultados: <strong>${total}</strong><br>
+        Resultados actuales: <strong>${total}</strong><br>
         Entrantes: <strong>${totalEntrantes}</strong> • Salientes: <strong>${totalSalientes}</strong><br>
         Con observaciones: <strong>${conObs}</strong> • Con PDF: <strong>${conPdf}</strong>
       `;
+      $("adminKpiTotal").textContent = total;
+      $("adminKpiEntrantes").textContent = totalEntrantes;
+      $("adminKpiSalientes").textContent = totalSalientes;
+      $("adminKpiObs").textContent = conObs;
     }
 
     function renderAdminCards() {
@@ -1833,9 +1829,13 @@
       startLiveTimer();
 
       const hasProfile = Boolean(currentProfile && currentProfile.activo !== false);
+      const isAgent = hasProfile && currentProfile?.rol === "agent";
+      const isAdmin = hasProfile && currentProfile?.rol === "admin";
       setVisible($("noAccessView"), !hasProfile);
-      setVisible($("agentView"), hasProfile && currentProfile?.rol === "agent");
-      setVisible($("adminView"), hasProfile && currentProfile?.rol === "admin");
+      setVisible($("agentView"), isAgent);
+      setVisible($("adminView"), isAdmin);
+      setVisible($("topSummary"), isAdmin);
+      setVisible($("topQuickSection"), isAdmin);
       setVisible($("btnGenerateToday"), hasProfile && currentProfile?.rol === "admin");
       setVisible($("btnReloadAdmin"), hasProfile && currentProfile?.rol === "admin");
       setVisible($("btnDownloadPdf"), hasProfile && currentProfile?.rol === "admin");
@@ -1886,8 +1886,6 @@
     $("btnRegistrarLlamada").addEventListener("click", () => registerMyCalls($("agentCallType").value, $("agentCallQty").value));
     $("btnQuickEntrante").addEventListener("click", () => registerMyCalls("Entrante", 1));
     $("btnQuickSaliente").addEventListener("click", () => registerMyCalls("Saliente", 1));
-    $("btnMarkLogin").addEventListener("click", markMyLogin);
-    $("btnMarkLogout").addEventListener("click", markMyLogout);
 
     $("btnSaveAccess").addEventListener("click", saveAccessProfile);
     $("btnClearAccess").addEventListener("click", clearAccessForm);
