@@ -27,8 +27,8 @@
     body {
       font-family: Inter, Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at top, rgba(245, 158, 11, 0.08), transparent 28%),
-        linear-gradient(180deg, #07111f 0%, #08101a 100%);
+        radial-gradient(circle at top, rgba(245, 158, 11, 0.14), transparent 34%),
+        linear-gradient(180deg, #122033 0%, #16263b 52%, #142235 100%);
       color: var(--text);
     }
 
@@ -74,8 +74,8 @@
     }
 
     .pill {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
       padding: 8px 12px;
       border-radius: 999px;
       font-size: 13px;
@@ -92,11 +92,11 @@
     .grid-2 { grid-template-columns: repeat(2, 1fr); }
 
     .card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(14,24,40,0.96), rgba(11,19,32,0.96));
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 18px;
       padding: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.26);
     }
 
     .title {
@@ -127,7 +127,7 @@
       box-shadow: 0 8px 20px rgba(245, 158, 11, 0.22);
     }
     .btn-secondary {
-      background: #1f2937;
+      background: #22334b;
       color: #fff;
       border: 1px solid var(--line);
     }
@@ -150,7 +150,7 @@
 
     input, textarea, select {
       width: 100%;
-      background: #0b1220;
+      background: #10203a;
       color: var(--text);
       border: 1px solid var(--line);
       border-radius: 12px;
@@ -184,6 +184,9 @@
     .status.leve { background: rgba(245,158,11,.15); color: #fde68a; }
     .status.retraso { background: rgba(239,68,68,.16); color: #fecaca; }
     .status.nolabora { background: rgba(139,92,246,.15); color: #ddd6fe; }
+    .status.finalizado { background: rgba(148,163,184,.16); color: #e2e8f0; justify-content:center; text-align:center; min-width:120px; line-height:1.1; padding:12px 14px; }
+    .report-card,
+    .report-card * { -webkit-tap-highlight-color: transparent; }
 
     .warning {
       background: rgba(59,130,246,.10);
@@ -209,9 +212,30 @@
       place-items: center;
     }
     .login-box {
-      width: min(620px, 94%);
+      width: min(680px, 94%);
       text-align: center;
-      padding: 28px;
+      padding: 34px 32px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.08));
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.18);
+    }
+    .login-hero {
+      width: 84px;
+      height: 84px;
+      margin: 0 auto 14px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 36px;
+      background: linear-gradient(180deg, rgba(59,130,246,.22), rgba(14,165,233,.16));
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 16px 30px rgba(14,165,233,.12);
+    }
+    .login-copy {
+      max-width: 520px;
+      margin: 0 auto 18px;
+      color: #dbeafe;
+      line-height: 1.5;
     }
     .badge {
       display: inline-block;
@@ -260,27 +284,31 @@
 
     .admin-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(4, minmax(320px, 1fr));
+      gap: 16px;
+      align-items: start;
     }
 
     .report-card {
       position: relative;
-      background: linear-gradient(180deg, rgba(15, 26, 36, 0.98), rgba(17, 24, 39, 0.98));
+      background: linear-gradient(180deg, rgba(16, 29, 49, 0.98), rgba(12, 22, 37, 0.98));
       border-radius: 18px;
       padding: 14px;
-      border: 1px solid rgba(255,255,255,0.05);
-      box-shadow: 0 8px 20px rgba(2,6,23,.45);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 14px 28px rgba(2,6,23,.45);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      min-height: 330px;
+      min-height: 390px;
       transition: .18s ease;
     }
-    .report-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 40px rgba(0,0,0,.46);
-      border-color: rgba(245, 158, 11, 0.18);
+    .report-card:active { transform: none; }
+    @media (hover: hover) and (pointer: fine) {
+      .report-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(0,0,0,.46);
+        border-color: rgba(245, 158, 11, 0.18);
+      }
     }
     .report-card::before {
       content: '';
@@ -312,14 +340,67 @@
       color: var(--accent);
       flex-shrink: 0;
     }
-    .agent-name { font-size: 14px; font-weight: 900; line-height: 1.15; }
-    .agent-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .agent-name { font-size: 15px; font-weight: 900; line-height: 1.2; }
+    .agent-meta { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.3; }
 
     .state-stack {
       display: flex;
       flex-direction: column;
       gap: 6px;
       align-items: flex-end;
+    }
+
+
+    .card-date-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .card-date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: #dbeafe;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+
+    .card-info-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .card-info-chip {
+      min-width: 0;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      padding: 9px 10px;
+    }
+
+    .card-info-chip .label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .card-info-chip .value {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .mini-badges {
@@ -384,8 +465,8 @@
       margin-top: 14px;
     }
     .access-item {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 14px;
       padding: 12px;
       cursor: pointer;
@@ -462,150 +543,278 @@
       pointer-events: auto;
       transform: translateY(0);
     }
-    .agent-main-card { padding: 18px; }
-.agent-main-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(320px, .9fr);
-  gap: 16px;
-  align-items: start;
-}
-.agent-panel-block {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.04);
-  border-radius: 16px;
-  padding: 16px;
-  min-width: 0;
-}
-.agent-info-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 14px;
-}
-.agent-info-item {
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(255,255,255,0.04);
-  border-radius: 14px;
-  padding: 12px;
-  min-width: 0;
-}
-.agent-info-item .label {
-  font-size: 12px;
-  color: var(--muted);
-  margin-bottom: 6px;
-}
-.agent-info-item .value {
-  font-size: 18px;
-  font-weight: 900;
-  line-height: 1.2;
-  word-break: break-word;
-}
-.agent-personal-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-}
-.agent-side-stack {
-  display: grid;
-  gap: 16px;
-  align-content: start;
-}
-.agent-actions-grid,
-.agent-call-actions {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-}
 
-.admin-shell {
-  display: grid;
-  grid-template-columns: 330px minmax(0, 1fr);
-  gap: 16px;
-  align-items: start;
-}
-.admin-sidebar,
-.admin-main {
-  min-width: 0;
-}
-.admin-sidebar {
-  display: grid;
-  gap: 16px;
-  position: sticky;
-  top: 104px;
-}
-.admin-toolbar {
-  display: grid;
-  grid-template-columns: minmax(240px, 1.3fr) repeat(4, minmax(120px, .7fr)) auto;
-  gap: 10px;
-  align-items: center;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 14px;
-  margin-bottom: 16px;
-}
-.admin-overview-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-.overview-box {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.04);
-  border-radius: 14px;
-  padding: 12px;
-  text-align: center;
-}
-.overview-box .label {
-  font-size: 12px;
-  color: var(--muted);
-  margin-bottom: 6px;
-}
-.overview-box .value {
-  font-size: 24px;
-  font-weight: 900;
+    .agent-main-card {
+      padding: 18px;
+      border-width: 2px;
+      transition: border-color .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+    .agent-main-card.state-disponible {
+      border-color: rgba(34,197,94,.55);
+      box-shadow: 0 14px 32px rgba(34,197,94,.12);
+    }
+    .agent-main-card.state-baño {
+      border-color: rgba(239,68,68,.7);
+      box-shadow: 0 14px 32px rgba(239,68,68,.16);
+      animation: auxPulseRed 1.05s infinite alternate;
+    }
+    .agent-main-card.state-almuerzo {
+      border-color: rgba(245,158,11,.7);
+      box-shadow: 0 14px 32px rgba(245,158,11,.16);
+      animation: auxPulseYellow 1.05s infinite alternate;
+    }
+    @keyframes auxPulseRed {
+      from { box-shadow: 0 12px 28px rgba(239,68,68,.10), 0 0 0 rgba(239,68,68,0); }
+      to { box-shadow: 0 18px 36px rgba(239,68,68,.22), 0 0 18px rgba(239,68,68,.22); }
+    }
+    @keyframes auxPulseYellow {
+      from { box-shadow: 0 12px 28px rgba(245,158,11,.10), 0 0 0 rgba(245,158,11,0); }
+      to { box-shadow: 0 18px 36px rgba(245,158,11,.22), 0 0 18px rgba(245,158,11,.20); }
+    }
+    .agent-main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(430px, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+    .agent-panel-block {
+      background: linear-gradient(180deg, rgba(13,24,42,0.96), rgba(9,17,30,0.96));
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 16px;
+      padding: 16px;
+      min-width: 0;
+    }
+    .agent-info-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .agent-info-item {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 14px;
+      padding: 12px;
+      min-width: 0;
+    }
+    .agent-info-item .label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+    .agent-info-item .value { font-size: 18px; font-weight: 900; line-height: 1.2; word-break: break-word; }
+    .agent-personal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .agent-side-stack {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      align-content: start;
+    }
+    .agent-side-stack .status-block { grid-column: 1 / -1; }
+    .agent-actions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .agent-status-btn {
+      min-height: 64px;
+      padding: 8px;
+      font-size: 30px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+    }
+    .agent-status-btn:hover { transform: translateY(-1px) scale(1.02); }
+
+    .agent-call-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .agent-call-actions #btnRegistrarLlamada { grid-column: 1 / -1; min-height: 52px; }
+    .agent-call-actions button { min-height: 48px; white-space: normal; line-height: 1.15; text-align: center; padding: 10px 12px; }
+
+    .top-admin-summary .card {
+      background: linear-gradient(180deg, rgba(15,27,46,0.98), rgba(10,18,31,0.98));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.28);
+    }
+    .summary-spotlight {
+      background:
+        radial-gradient(circle at top right, rgba(59,130,246,.14), transparent 32%),
+        linear-gradient(135deg, rgba(37,99,235,.14), rgba(15,23,36,.92));
+      border: 1px solid rgba(96,165,250,.22);
+      box-shadow: 0 16px 36px rgba(2,6,23,.28);
+    }
+    .summary-spotlight .title-row {
+      display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:12px; flex-wrap:wrap;
+    }
+    .summary-date-pill {
+      display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
+      background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:#dbeafe; font-size:13px; font-weight:800;
+    }
+    .summary-highlight-grid {
+      display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:12px;
+    }
+    .summary-highlight-box {
+      border-radius:18px;
+      padding:16px;
+      border:1px solid rgba(255,255,255,.16);
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 10px 24px rgba(0,0,0,.12);
+    }
+    .summary-highlight-box .summary-label {
+      font-size:12px; color:#bfdbfe; margin-bottom:8px; font-weight:700; letter-spacing:.2px;
+    }
+    .summary-highlight-box .summary-value {
+      font-size:15px; font-weight:800; color:#fff; line-height:1.45; min-height:52px;
+      display:flex; flex-direction:column; gap:4px; align-items:flex-start; justify-content:flex-start;
+    }
+    .summary-name-line {
+      display:block;
+      font-size:13px;
+      font-weight:800;
+      line-height:1.28;
+    }
+    .summary-empty {
+      font-size:20px;
+      font-weight:900;
+      line-height:1.2;
+    }
+    .summary-highlight-box.bath {
+      background: linear-gradient(180deg, rgba(239,68,68,.12), rgba(255,255,255,.03));
+      border-color: rgba(239,68,68,.18);
+    }
+    .summary-highlight-box.lunch {
+      background: linear-gradient(180deg, rgba(245,158,11,.14), rgba(255,255,255,.03));
+      border-color: rgba(245,158,11,.18);
+    }
+    
+    .quick-actions-wrap { position: relative; display: inline-flex; flex-direction: column; align-items: flex-start; }
+    .quick-actions-menu {
+      position: absolute;
+      left: 0;
+      top: calc(100% + 10px);
+      width: min(300px, 82vw);
+      background: linear-gradient(180deg, rgba(14,24,40,0.98), rgba(9,17,30,0.98));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 22px 44px rgba(0,0,0,0.34);
+      display: none;
+      z-index: 100;
+    }
+    .quick-actions-menu.show { display: grid; gap: 10px; }
+    .quick-actions-menu button { width: 100%; justify-content: center; }
+    .agent-call-actions button, .agent-actions-grid button { min-height: 52px; line-height: 1.2; white-space: normal; }
+    .summary-highlight-box .summary-sub {
+      margin-top: 6px;
+      color: #dbeafe;
+      font-size: 12px;
+      line-height: 1.35;
+      opacity: .95;
+      font-weight: 700;
+    }
+    .pagination-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(14,24,40,0.96), rgba(9,17,30,0.96));
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .pagination-actions { display:flex; gap:10px; }
+
+    .admin-main { min-width: 0; }
+    .admin-toolbar {
+      display: grid;
+      grid-template-columns: minmax(240px, 1.3fr) repeat(4, minmax(120px, .75fr)) auto auto;
+      gap: 10px;
+      align-items: center;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    
+    .bathroom-alert {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.36);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 70px;
+      z-index: 1900;
+      pointer-events: none;
+    }
+    .bathroom-alert-box {
+      width: min(560px, 92vw);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,245,245,.98), rgba(255,236,236,.96));
+      border: 2px solid rgba(239,68,68,.45);
+      box-shadow: 0 22px 50px rgba(239,68,68,.22);
+      color: #7f1d1d;
+    }
+    .bathroom-alert-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      background: rgba(239,68,68,.12);
+      flex-shrink: 0;
+    }
+    .bathroom-alert-title {
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+    .bathroom-alert-text {
+      font-size: 14px;
+      line-height: 1.4;
+      color: #991b1b;
+    }
+
+@media (max-width: 1320px) {
+  .admin-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 @media (max-width: 1100px) {
-  .grid-4, .grid-3 { grid-template-columns: 1fr 1fr; }
-  .agent-main-grid { grid-template-columns: 1fr; }
-  .admin-shell { grid-template-columns: 1fr; }
-  .admin-sidebar { position: static; }
-  .admin-toolbar { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 760px) {
-  .grid-4, .grid-3, .grid-2, .stats-grid, .form-grid,
-  .agent-info-list, .agent-personal-grid, .agent-actions-grid,
-  .agent-call-actions, .admin-overview-grid, .admin-toolbar {
-    grid-template-columns: 1fr;
-  }
-
-  .topbar { top: 0; border-radius: 0 0 18px 18px; }
-  .brand { font-size: 23px; }
-  .admin-grid, .access-list, .report-stats { grid-template-columns: 1fr; }
-}
+      .grid-4, .grid-3 { grid-template-columns: 1fr 1fr; }
+      .agent-shell { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .grid-4, .grid-3, .grid-2, .stats-grid, .form-grid { grid-template-columns: 1fr; }
+      .topbar { top: 0; border-radius: 0 0 18px 18px; }
+  .admin-grid { grid-template-columns: 1fr; }
+      .brand { font-size: 23px; }
+      .admin-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <section id="loginView" class="login-center">
       <div class="card login-box">
-        <div class="badge">Operaciones unificadas en bases de prueba</div>
+        <div class="login-hero">🎧</div>
+        <div class="badge">Panel de operaciones</div>
         <h1 style="margin:0 0 10px;">Operaciones Call Center</h1>
-        <p class="muted" style="margin:0 0 18px;">
-          Login con Microsoft, panel individual para agentes y panel admin completo en una sola página.
+        <p class="login-copy">
+          Inicia sesión con tu cuenta institucional para acceder a tu panel de agente o a la vista de supervisión.
         </p>
-
-        <div class="warning" style="text-align:left; margin-bottom:18px;">
-          Esta versión usa colecciones de prueba para no romper tu sistema actual:
-          <div style="margin-top:8px; display:grid; gap:6px;">
-            <div><strong>prueba_operaciones_usuarios</strong></div>
-            <div><strong>prueba_operaciones_registros</strong></div>
-            <div><strong>prueba_operaciones_llamadas</strong></div>
-          </div>
-        </div>
-
         <button id="btnLogin" class="btn-primary">Iniciar sesión con Microsoft</button>
       </div>
     </section>
@@ -643,32 +852,43 @@
         </div>
       </div>
 
-      <div id="topQuickSection" class="grid grid-2 top-admin-summary" style="margin-bottom:16px;">
-        <div class="card">
-          <h2 class="title">Resumen general de hoy</h2>
-          <div class="field">
-            <label>Agentes en baño</label>
-            <div id="listaBano" class="muted">Nadie</div>
+      <div id="topQuickSection" class="grid grid-2 top-admin-summary" style="margin-bottom:16px; align-items:stretch;">
+        <div class="card summary-spotlight">
+          <div class="title-row">
+            <div>
+              <h2 class="title" style="margin-bottom:6px;">Resumen general de hoy</h2>
+              <div class="muted">Vista rápida del piso en tiempo real</div>
+            </div>
+            <div id="infoTodayDate" class="summary-date-pill">Fecha operativa: -</div>
           </div>
-          <div class="field">
-            <label>Agentes en almuerzo</label>
-            <div id="listaAlmuerzo" class="muted">Nadie</div>
+          <div class="summary-highlight-grid">
+            <div class="summary-highlight-box bath">
+              <div class="summary-label">🚻 Agentes en baño</div>
+              <div id="listaBano" class="summary-value">Nadie</div>
+              <div id="listaBanoMeta" class="summary-sub">0 agentes</div>
+            </div>
+            <div class="summary-highlight-box lunch">
+              <div class="summary-label">🍔 Agentes en almuerzo</div>
+              <div id="listaAlmuerzo" class="summary-value">Nadie</div>
+              <div id="listaAlmuerzoMeta" class="summary-sub">0 agentes</div>
+            </div>
           </div>
-          <div class="warning" id="infoTodayDate">Fecha operativa: -</div>
         </div>
 
         <div class="card">
           <h2 class="title">Acciones rápidas</h2>
-          <div class="actions">
-            <button id="btnGenerateToday" class="btn-blue hidden">Generar registros de hoy</button>
-            <button id="btnReloadAdmin" class="btn-secondary hidden">Recargar admin</button>
-            <button id="btnDownloadPdf" class="btn-primary hidden">Descargar PDF</button>
-          </div>
-          <div class="actions" style="margin-top:10px;">
-            <button id="btnResetToday" class="btn-red hidden">Reiniciar día actual</button>
+          <div class="quick-actions-wrap">
+            <button id="btnQuickActionsToggle" class="btn-primary hidden">Acciones rápidas</button>
+            <div id="quickActionsMenu" class="quick-actions-menu">
+              <button id="btnGenerateToday" class="btn-blue">Generar registros de hoy</button>
+              <button id="btnReloadAdmin" class="btn-secondary">Recargar</button>
+              <button id="btnDownloadPdf" class="btn-primary">Descargar PDF</button>
+              <button id="btnOpenAccessModal" class="btn-purple">Gestionar accesos</button>
+              <button id="btnResetToday" class="btn-red">Reiniciar día actual</button>
+            </div>
           </div>
           <p class="muted" style="margin-top:12px;">
-            Los agentes solo pueden editar sus propios movimientos y llamadas. El admin puede gestionar accesos y registros diarios.
+            Sí, esta versión sigue guardando los registros por día. Cada agente tiene su documento separado por fecha.
           </p>
         </div>
       </div>
@@ -715,12 +935,12 @@
             </div>
 
             <div class="agent-side-stack">
-              <div class="agent-panel-block">
+              <div class="agent-panel-block status-block">
                 <h2 class="title">Cambiar estado</h2>
                 <div class="agent-actions-grid">
-                  <button id="btnDisponible" class="btn-green">Disponible</button>
-                  <button id="btnBano" class="btn-red">Baño</button>
-                  <button id="btnAlmuerzo" class="btn-primary">Almuerzo</button>
+                  <button id="btnDisponible" class="btn-green agent-status-btn" title="Disponible" aria-label="Disponible">✅</button>
+                  <button id="btnBano" class="btn-red agent-status-btn" title="Baño" aria-label="Baño">🚻</button>
+                  <button id="btnAlmuerzo" class="btn-primary agent-status-btn" title="Almuerzo" aria-label="Almuerzo">🍔</button>
                 </div>
                 <div class="warning" style="margin-top:12px;">
                   Máximo <strong>2 agentes</strong> en baño al mismo tiempo.
@@ -747,10 +967,26 @@
                 </div>
               </div>
 
-              <div class="agent-panel-block">
-                <h2 class="title">Resumen general</h2>
-                <div class="field"><label>Agentes en baño</label><div id="listaBanoAgent" class="muted">Nadie</div></div>
-                <div class="field"><label>Agentes en almuerzo</label><div id="listaAlmuerzoAgent" class="muted">Nadie</div></div>
+              <div class="agent-panel-block summary-spotlight">
+                <div class="title-row">
+                  <div>
+                    <h2 class="title" style="margin-bottom:6px;">Resumen general</h2>
+                    <div class="muted">Movimiento del equipo en este momento</div>
+                  </div>
+                  <div class="summary-date-pill">Tiempo real</div>
+                </div>
+                <div class="summary-highlight-grid">
+                  <div class="summary-highlight-box bath">
+                    <div class="summary-label">🚻 Agentes en baño</div>
+                    <div id="listaBanoAgent" class="summary-value">Nadie</div>
+                    <div id="listaBanoAgentMeta" class="summary-sub">0 agentes</div>
+                  </div>
+                  <div class="summary-highlight-box lunch">
+                    <div class="summary-label">🍔 Agentes en almuerzo</div>
+                    <div id="listaAlmuerzoAgent" class="summary-value">Nadie</div>
+                    <div id="listaAlmuerzoAgentMeta" class="summary-sub">0 agentes</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -758,82 +994,72 @@
       </section>
 
       <section id="adminView" class="hidden" style="margin-top:16px;">
-        <div class="admin-shell">
-          <aside class="admin-sidebar">
-            <div class="card">
-              <h2 class="title">Resumen admin</h2>
-              <div id="adminResultSummary" class="warning">Sin resultados cargados.</div>
-              <div class="admin-overview-grid" style="margin-top:12px;">
-                <div class="overview-box"><div class="label">Registros</div><div id="adminKpiTotal" class="value">0</div></div>
-                <div class="overview-box"><div class="label">Entrantes</div><div id="adminKpiEntrantes" class="value">0</div></div>
-                <div class="overview-box"><div class="label">Salientes</div><div id="adminKpiSalientes" class="value">0</div></div>
-                <div class="overview-box"><div class="label">Con obs.</div><div id="adminKpiObs" class="value">0</div></div>
-              </div>
-              <div class="danger" style="margin-top:12px;">
-                Vista conectada a <strong>bases de prueba</strong>.
-              </div>
-            </div>
-
-            <div class="card">
-              <h2 class="title">Gestión de accesos</h2>
-              <div class="form-grid">
-                <div class="field">
-                  <label>Agente / extensión</label>
-                  <select id="accessRosterSelect"></select>
-                </div>
-                <div class="field">
-                  <label>Correo institucional</label>
-                  <input id="accessEmail" type="email" placeholder="nombre@upana.edu.gt" />
-                </div>
-                <div class="field">
-                  <label>Rol</label>
-                  <select id="accessRole">
-                    <option value="agent">Agente</option>
-                    <option value="admin">Admin</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label>Estado</label>
-                  <select id="accessActive">
-                    <option value="true">Activo</option>
-                    <option value="false">Inactivo</option>
-                  </select>
-                </div>
-              </div>
-              <div class="actions">
-                <button id="btnSaveAccess" class="btn-blue">Guardar acceso</button>
-                <button id="btnClearAccess" class="btn-secondary">Limpiar</button>
-              </div>
-              <div class="access-list" id="accessList"></div>
-            </div>
-          </aside>
-
-          <div class="admin-main">
-            <div class="admin-toolbar">
-              <input id="searchInput" class="search" placeholder="Buscar por nombre, correo o extensión..." />
-              <select id="filterStatus">
-                <option value="all">Todos</option>
-                <option value="puntual">Puntuales</option>
-                <option value="leve">Leves (≤5 min)</option>
-                <option value="retraso">Retraso (&gt;5 min)</option>
-                <option value="sinmarcar">Sin marcar</option>
-                <option value="baño">En baño</option>
-                <option value="almuerzo">En almuerzo</option>
-                <option value="disponible">Disponibles</option>
-              </select>
-              <select id="filterAgent">
-                <option value="all">Todos los agentes</option>
-              </select>
-              <input id="filterFrom" type="date" />
-              <input id="filterTo" type="date" />
-              <button id="btnOpenRecordModal" class="btn-secondary">Registrar / editar</button>
-            </div>
-
-            <div id="adminCards" class="admin-grid"></div>
+        <div class="admin-main">
+          <div class="admin-toolbar">
+            <input id="searchInput" class="search" placeholder="Buscar por nombre, correo o extensión..." />
+            <select id="filterStatus">
+              <option value="all">Todos</option>
+              <option value="puntual">Puntuales</option>
+              <option value="leve">Leves (≤5 min)</option>
+              <option value="retraso">Retraso (&gt;5 min)</option>
+              <option value="sinmarcar">Sin marcar</option>
+              <option value="baño">En baño</option>
+              <option value="almuerzo">En almuerzo</option>
+              <option value="disponible">Disponibles</option>
+            </select>
+            <select id="filterAgent">
+              <option value="all">Todos los agentes</option>
+            </select>
+            <input id="filterFrom" type="date" />
+            <input id="filterTo" type="date" />
+            <button id="btnOpenRecordModal" class="btn-secondary">Registrar / editar</button>
           </div>
-        </div>
+
+          <div id="adminCards" class="admin-grid"></div>
+          </div>
       </section>
     </section>
+  </div>
+
+  <div id="accessModalOverlay" class="overlay">
+    <div class="modal">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
+        <div>
+          <h3 style="margin:0 0 4px 0;">Gestión de accesos</h3>
+          <div class="muted">Asigna el correo institucional a cada agente o supervisor.</div>
+        </div>
+        <button id="btnCloseAccessModal" class="btn-secondary">Cerrar</button>
+      </div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Agente / extensión</label>
+          <select id="accessRosterSelect"></select>
+        </div>
+        <div class="field">
+          <label>Correo institucional</label>
+          <input id="accessEmail" type="email" placeholder="nombre@upana.edu.gt" />
+        </div>
+        <div class="field">
+          <label>Rol</label>
+          <select id="accessRole">
+            <option value="agent">Agente</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Estado</label>
+          <select id="accessActive">
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+          </select>
+        </div>
+      </div>
+      <div class="actions" style="margin-top:6px;">
+        <button id="btnSaveAccess" class="btn-blue">Guardar acceso</button>
+        <button id="btnClearAccess" class="btn-secondary">Limpiar</button>
+      </div>
+      <div class="access-list" id="accessList"></div>
+    </div>
   </div>
 
   <div id="recordModalOverlay" class="overlay">
@@ -914,6 +1140,16 @@
         <button id="btnClosePdf" class="btn-secondary">Cerrar</button>
       </div>
       <iframe id="pdfViewer" class="pdf-frame"></iframe>
+    </div>
+  </div>
+
+  <div id="bathroomAlert" class="bathroom-alert hidden">
+    <div class="bathroom-alert-box">
+      <div class="bathroom-alert-icon">⚠️</div>
+      <div>
+        <div class="bathroom-alert-title">Baño temporalmente no disponible</div>
+        <div id="bathroomAlertText" class="bathroom-alert-text">Espere a que otro agente regrese del baño.</div>
+      </div>
     </div>
   </div>
 
@@ -1028,7 +1264,18 @@
       showToast._t = setTimeout(() => toastEl.classList.remove("show"), ms);
     }
 
-    function emailKey(email) {
+    
+    function showBathroomAlert(message = "Espere a que otro agente regrese del baño.") {
+      const wrap = $("bathroomAlert");
+      const label = $("bathroomAlertText");
+      if (label) label.textContent = message;
+      if (!wrap) return;
+      wrap.classList.remove("hidden");
+      clearTimeout(showBathroomAlert._t);
+      showBathroomAlert._t = setTimeout(() => wrap.classList.add("hidden"), 2600);
+    }
+
+function emailKey(email) {
       return String(email || "").trim().toLowerCase();
     }
 
@@ -1247,7 +1494,6 @@
       const snap = await getDoc(ref);
       if (!snap.exists()) {
         const payload = defaultRecord(profile, fecha);
-        if (profile.rol === "agent") payload.login = nowTimeHM();
         await setDoc(ref, payload);
       } else {
         const data = snap.data();
@@ -1255,7 +1501,6 @@
         let mustPatch = false;
         if (!data.nombre || data.nombre !== profile.nombre) { patch.nombre = profile.nombre; mustPatch = true; }
         if (!data.ext || String(data.ext) !== String(profile.ext)) { patch.ext = String(profile.ext); mustPatch = true; }
-        if (profile.rol === "agent" && !data.login) { patch.login = nowTimeHM(); mustPatch = true; }
         if (mustPatch) await updateDoc(ref, patch);
       }
     }
@@ -1288,7 +1533,7 @@
       if (nextStatus === "baño" && myRecord.estado !== "baño") {
         const enBano = todaySummaryRecords.filter(r => r.fecha === todayKey() && r.estado === "baño" && emailKey(r.email) !== emailKey(currentProfile.email));
         if (enBano.length >= MAX_BANO) {
-          showToast("Espere a que otro agente regrese del baño.");
+          showBathroomAlert();
           return;
         }
       }
@@ -1314,7 +1559,6 @@
         segundosAlmuerzo,
         updatedAt: serverTimestamp()
       };
-      if (!data.login) payload.login = nowTimeHM();
 
       await updateDoc(ref, payload);
     }
@@ -1484,6 +1728,19 @@
       const user = accessUsers.find(u => emailKey(u.email) === email);
       $("recordExt").value = user?.ext || "";
     }
+    function summarizeNames(items, emptyLabel = "Nadie") {
+      const count = items.length;
+      if (!count) {
+        return { html: `<span class="summary-empty">${emptyLabel}</span>`, meta: "0 agentes" };
+      }
+      const names = items.map(i => i.nombre).filter(Boolean);
+      const visibleNames = names.slice(0, 2);
+      const extra = Math.max(0, names.length - visibleNames.length);
+      const html = visibleNames.map(name => `<span class="summary-name-line">${esc(name)}</span>`).join("");
+      const metaParts = [`${count} agente${count === 1 ? "" : "s"}`];
+      if (extra > 0) metaParts.push(`+${extra} más`);
+      return { html, meta: metaParts.join(" • ") };
+    }
 
     function renderGlobalSummary(records) {
       const today = todayKey();
@@ -1496,14 +1753,22 @@
       $("kpiBano").textContent = enBano.length;
       $("kpiAlmuerzo").textContent = enAlmuerzo.length;
       $("kpiDisponibles").textContent = disponibles.length;
-      const banoText = enBano.length ? enBano.map(r => r.nombre).join(", ") : "Nadie";
-      const almuerzoText = enAlmuerzo.length ? enAlmuerzo.map(r => r.nombre).join(", ") : "Nadie";
-      $("listaBano").textContent = banoText;
-      $("listaAlmuerzo").textContent = almuerzoText;
+
+      const banoSummary = summarizeNames(enBano);
+      const almuerzoSummary = summarizeNames(enAlmuerzo);
+      $("listaBano").innerHTML = banoSummary.html;
+      $("listaAlmuerzo").innerHTML = almuerzoSummary.html;
+      $("listaBanoMeta").textContent = banoSummary.meta;
+      $("listaAlmuerzoMeta").textContent = almuerzoSummary.meta;
+
       const elBanoAgent = $("listaBanoAgent");
       const elAlmuerzoAgent = $("listaAlmuerzoAgent");
-      if (elBanoAgent) elBanoAgent.textContent = banoText;
-      if (elAlmuerzoAgent) elAlmuerzoAgent.textContent = almuerzoText;
+      if (elBanoAgent) elBanoAgent.innerHTML = banoSummary.html;
+      if (elAlmuerzoAgent) elAlmuerzoAgent.innerHTML = almuerzoSummary.html;
+      const elBanoAgentMeta = $("listaBanoAgentMeta");
+      const elAlmuerzoAgentMeta = $("listaAlmuerzoAgentMeta");
+      if (elBanoAgentMeta) elBanoAgentMeta.textContent = banoSummary.meta;
+      if (elAlmuerzoAgentMeta) elAlmuerzoAgentMeta.textContent = almuerzoSummary.meta;
       $("infoTodayDate").textContent = `Fecha operativa: ${today}`;
     }
 
@@ -1529,6 +1794,11 @@
         $("agEntrantes").textContent = 0;
         $("agSalientes").textContent = 0;
         setStatusBadge($("agEstadoBadge"), "disponible");
+        const mainCard = document.querySelector(".agent-main-card");
+        if (mainCard) {
+          mainCard.classList.remove("state-baño", "state-almuerzo");
+          mainCard.classList.add("state-disponible");
+        }
         return;
       }
 
@@ -1549,6 +1819,14 @@
       if (record.estado === "baño" && liveBathroom > 15 * 60) statusKey = "excedido";
       if (record.estado === "almuerzo" && liveLunch > 60 * 60) statusKey = "excedido";
       setStatusBadge($("agEstadoBadge"), statusKey);
+
+      const mainCard = document.querySelector(".agent-main-card");
+      if (mainCard) {
+        mainCard.classList.remove("state-disponible", "state-baño", "state-almuerzo");
+        if (record.estado === "baño") mainCard.classList.add("state-baño");
+        else if (record.estado === "almuerzo") mainCard.classList.add("state-almuerzo");
+        else mainCard.classList.add("state-disponible");
+      }
     }
 
     function getFilteredAdminRecords() {
@@ -1578,28 +1856,11 @@
       });
     }
 
-    function renderAdminSummary() {
-      const filtered = getFilteredAdminRecords();
-      const total = filtered.length;
-      const conObs = filtered.filter(r => r.observaciones).length;
-      const conPdf = filtered.filter(r => r.pdf).length;
-      const totalEntrantes = filtered.reduce((acc, r) => acc + Number(r.entrantes || 0), 0);
-      const totalSalientes = filtered.reduce((acc, r) => acc + Number(r.salientes || 0), 0);
-      $("adminResultSummary").innerHTML = `
-        Resultados actuales: <strong>${total}</strong><br>
-        Entrantes: <strong>${totalEntrantes}</strong> • Salientes: <strong>${totalSalientes}</strong><br>
-        Con observaciones: <strong>${conObs}</strong> • Con PDF: <strong>${conPdf}</strong>
-      `;
-      $("adminKpiTotal").textContent = total;
-      $("adminKpiEntrantes").textContent = totalEntrantes;
-      $("adminKpiSalientes").textContent = totalSalientes;
-      $("adminKpiObs").textContent = conObs;
-    }
+    function renderAdminSummary() { return; }
 
     function renderAdminCards() {
       const box = $("adminCards");
       const records = getFilteredAdminRecords();
-      renderAdminSummary();
 
       if (!records.length) {
         box.innerHTML = `<div class="card"><div class="muted">No hay registros para los filtros seleccionados.</div></div>`;
@@ -1610,31 +1871,47 @@
         const p = getPunctualityInfo(rec);
         const liveBano = rec.fecha === todayKey() ? liveAccumulatedSeconds(rec, "baño") : Number(rec.segundosBano || 0);
         const liveAlmuerzo = rec.fecha === todayKey() ? liveAccumulatedSeconds(rec, "almuerzo") : Number(rec.segundosAlmuerzo || 0);
-        const stateKey = (rec.fecha === todayKey() && rec.estado === "baño" && liveBano > 15 * 60) || (rec.fecha === todayKey() && rec.estado === "almuerzo" && liveAlmuerzo > 60 * 60)
-          ? "excedido"
-          : (rec.estado || "disponible");
+        const isPastRecord = rec.fecha !== todayKey();
+        const stateKey = isPastRecord
+          ? "finalizado"
+          : ((rec.estado === "baño" && liveBano > 15 * 60) || (rec.estado === "almuerzo" && liveAlmuerzo > 60 * 60)
+            ? "excedido"
+            : (rec.estado || "disponible"));
         const obsText = rec.observaciones ? esc(rec.observaciones.length > 180 ? rec.observaciones.slice(0, 180) + "..." : rec.observaciones) : "Sin observaciones";
         return `
           <div class="report-card" data-record-id="${esc(rec.id)}">
+            <div class="card-date-row">
+              <div class="card-date-badge">📅 ${esc(rec.fecha || "-")}</div>
+              <div class="mini-badge" style="color:${p.color};">${esc(p.label)}</div>
+            </div>
+
             <div class="card-header">
-              <div style="display:flex;gap:10px;align-items:center;">
+              <div style="display:flex;gap:10px;align-items:center;min-width:0;">
                 <div class="avatar">${esc((rec.nombre || "?").charAt(0).toUpperCase())}</div>
-                <div>
+                <div style="min-width:0;">
                   <div class="agent-name">${esc(rec.nombre || "-")}</div>
-                  <div class="agent-meta">Ext ${esc(rec.ext || "-")} • ${esc(rec.fecha || "-")}</div>
+                  <div class="agent-meta">Ext ${esc(rec.ext || "-")}</div>
                   <div class="agent-meta">${esc(rec.email || "")}</div>
                 </div>
               </div>
               <div class="state-stack">
-                <div class="mini-badge" style="color:${p.color};">${esc(p.label)}</div>
-                <div class="status ${stateKey}">${stateKey === "baño" ? "En baño" : stateKey === "almuerzo" ? "En almuerzo" : stateKey === "excedido" ? "Excedido" : "Disponible"}</div>
+                <div class="status ${stateKey}">${stateKey === "baño" ? "En baño" : stateKey === "almuerzo" ? "En almuerzo" : stateKey === "excedido" ? "Excedido" : stateKey === "finalizado" ? "Turno finalizado" : "Disponible"}</div>
               </div>
             </div>
 
-            <div class="mini-badges">
-              <div class="mini-badge">Horario: ${esc(p.schedule || "No labora")}</div>
-              <div class="mini-badge">Log in: ${esc(rec.login || "-")}</div>
-              <div class="mini-badge">Log out: ${esc(rec.logout || "-")}</div>
+            <div class="card-info-strip">
+              <div class="card-info-chip">
+                <div class="label">Horario</div>
+                <div class="value">${esc(p.schedule || "No labora")}</div>
+              </div>
+              <div class="card-info-chip">
+                <div class="label">Log in</div>
+                <div class="value">${esc(rec.login || "-")}</div>
+              </div>
+              <div class="card-info-chip">
+                <div class="label">Log out</div>
+                <div class="value">${esc(rec.logout || "-")}</div>
+              </div>
             </div>
 
             <div class="report-stats">
@@ -1709,6 +1986,7 @@
       );
       unsubAdminRange = onSnapshot(q, snap => {
         adminRangeRecords = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        adminCurrentPage = 1;
         renderAdminCards();
       }, error => console.error(error));
     }
@@ -1919,6 +2197,14 @@
       docPdf.save(`operaciones_prueba_${from}_a_${to}.pdf`);
     }
 
+    function openAccessModal() {
+      $("accessModalOverlay").classList.add("show");
+    }
+
+    function closeAccessModal() {
+      $("accessModalOverlay").classList.remove("show");
+    }
+
     function bootStaticUI() {
       populateRosterSelects();
       $("filterFrom").value = todayKey();
@@ -1934,7 +2220,8 @@
       setVisible($("loginView"), false);
       setVisible($("appView"), true);
       $("userInfo").textContent = `${user.displayName || "Usuario"} · ${user.email || ""}`;
-      $("roleInfo").textContent = `Rol: ${currentProfile?.rol || "sin acceso"}`;
+      const roleLabel = currentProfile?.rol === "agent" ? "Agente" : currentProfile?.rol === "admin" ? "Admin" : "sin acceso";
+      $("roleInfo").textContent = `Rol: ${roleLabel}`;
 
       await subscribeUsers();
       await subscribeTodaySummary();
@@ -1948,10 +2235,9 @@
       setVisible($("adminView"), isAdmin);
       setVisible($("topSummary"), isAdmin);
       setVisible($("topQuickSection"), isAdmin);
-      setVisible($("btnGenerateToday"), hasProfile && currentProfile?.rol === "admin");
-      setVisible($("btnReloadAdmin"), hasProfile && currentProfile?.rol === "admin");
-      setVisible($("btnDownloadPdf"), hasProfile && currentProfile?.rol === "admin");
-      setVisible($("btnResetToday"), hasProfile && currentProfile?.rol === "admin");
+      setVisible($("btnQuickActionsToggle"), hasProfile && currentProfile?.rol === "admin");
+      setVisible($("btnOpenAccessModal"), hasProfile && currentProfile?.rol === "admin");
+      setVisible($("btnOpenAccessModalToolbar"), hasProfile && currentProfile?.rol === "admin");
 
       if (!hasProfile) {
         if (unsubAdminRange) { unsubAdminRange(); unsubAdminRange = null; }
@@ -2001,15 +2287,28 @@
 
     $("btnSaveAccess").addEventListener("click", saveAccessProfile);
     $("btnClearAccess").addEventListener("click", clearAccessForm);
+    $("btnOpenAccessModal").addEventListener("click", openAccessModal);
+    $("btnCloseAccessModal").addEventListener("click", closeAccessModal);
 
     $("btnGenerateToday").addEventListener("click", ensureTodayRecordsForAllActiveUsers);
     $("btnReloadAdmin").addEventListener("click", subscribeAdminRange);
     $("btnDownloadPdf").addEventListener("click", downloadCurrentPdf);
     $("btnResetToday").addEventListener("click", resetTodayTestData);
+    $("btnQuickActionsToggle").addEventListener("click", (e) => {
+      e.stopPropagation();
+      $("quickActionsMenu").classList.toggle("show");
+    });
+    document.addEventListener("click", (e) => {
+      const wrap = document.querySelector(".quick-actions-wrap");
+      if (wrap && !wrap.contains(e.target)) $("quickActionsMenu").classList.remove("show");
+    });
+    ["btnGenerateToday","btnReloadAdmin","btnDownloadPdf","btnOpenAccessModal","btnResetToday"].forEach(id => {
+      $(id).addEventListener("click", () => $("quickActionsMenu").classList.remove("show"));
+    }); renderAdminCards();
 
-    $("searchInput").addEventListener("input", renderAdminCards);
-    $("filterStatus").addEventListener("change", renderAdminCards);
-    $("filterAgent").addEventListener("change", renderAdminCards);
+    $("searchInput").addEventListener("input", () => { adminCurrentPage = 1; renderAdminCards(); });
+    $("filterStatus").addEventListener("change", () => { adminCurrentPage = 1; renderAdminCards(); });
+    $("filterAgent").addEventListener("change", () => { adminCurrentPage = 1; renderAdminCards(); });
     $("filterFrom").addEventListener("change", subscribeAdminRange);
     $("filterTo").addEventListener("change", subscribeAdminRange);
 
@@ -2021,6 +2320,7 @@
     $("btnClosePdf").addEventListener("click", closePdf);
     $("recordModalOverlay").addEventListener("click", (e) => { if (e.target === $("recordModalOverlay")) closeRecordModal(); });
     $("pdfModalOverlay").addEventListener("click", (e) => { if (e.target === $("pdfModalOverlay")) closePdf(); });
+    $("accessModalOverlay").addEventListener("click", (e) => { if (e.target === $("accessModalOverlay")) closeAccessModal(); });
 
     bootStaticUI();
   </script>
